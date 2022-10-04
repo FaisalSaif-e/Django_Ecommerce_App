@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}LAPTOP{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-2">
+    <div class="list-group">
+        <a href="{% url 'laptop' %}" class="list-group-item list-group-item-action" aria-current="true">All Laptop</a>
+        <a href="{% url 'laptopdata' 'Apple'%}" class="list-group-item list-group-item-action" aria-current="true">Apple</a>
+        <a href="{% url 'laptopdata' 'HP'%}" class="list-group-item list-group-item-action" aria-current="true">HP</a>
+        <a href="{% url 'laptopdata' 'ACER'%}" class="list-group-item list-group-item-action" aria-current="true">ACER</a>
+        <a href="{% url 'laptopdata' 'Lenovo'%}" class="list-group-item list-group-item-action" aria-current="true">Lenovo</a>
+        <a href="{% url 'laptopdata' 'MSI'%}" class="list-group-item list-group-item-action" aria-current="true">MSI</a>
+    </div>
+  </div>
+  <!-- Mobile List --> 
+  <div class="col-sm-10">
+    <center><h2><b>LAPTOP</b></h2></center>
+   <div class="row">
+    {% for lap in laptops%}
+    <div class="col-sm-4 text-center-mb-4">
+        <a href="{% url 'product-detail' lap.id %}" class="btn">
+            <div class="item">
+            <img src="{{lap.product_image.url}}" alt="" width="400" height="300px" class="" >
+            <div class="fw-bold">{{lap.title}}</div>
+            <div class="fw-bold">Rs. {{lap.discount_price}}
+            <small class="fw-light text-decoration-line-through">{{lap.selling_price}}</small></div>
+        </div>
+        </a>
+   </div>
+   {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
